@@ -1,0 +1,682 @@
+/* Base Styles */
+:root {
+    --bg-dark: #0f0f13;
+    --bg-card: #1a1a22;
+    --primary: #9b87f5;
+    --primary-dark: #7e69ab;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --error: #ff4d4d;
+    --success: #4caf50;
+    --border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(26, 26, 34, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(91, 77, 149, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(91, 77, 149, 0.1) 0%, transparent 60%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #c4b5fd;
+}
+
+button, .btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(155, 135, 245, 0.3);
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    transform: rotate(25deg);
+    pointer-events: none;
+}
+
+/* Landing Page Styles */
+.landing-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.role-selection {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.role-card {
+    flex: 1;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary);
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    background: rgba(155, 135, 245, 0.1);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-text h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.feature-text p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* Login Styles */
+.login-card {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 135, 245, 0.3);
+}
+
+.back-link {
+    margin-bottom: 1.5rem;
+}
+
+.login-hint {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background-color: rgba(255, 77, 77, 0.1);
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    color: var(--error);
+}
+
+/* Doctor Dashboard Styles */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar nav {
+    flex: 1;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--text);
+    transition: all 0.3s;
+}
+
+.sidebar li.active a,
+.sidebar a:hover {
+    background-color: rgba(155, 135, 245, 0.1);
+    color: var(--primary);
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.date-display {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.notification-count {
+    background-color: var(--primary);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.appointments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.appointment-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+.appointment-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.appointment-time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.appointment-info {
+    margin-bottom: 1rem;
+}
+
+.appointment-info p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.appointment-info .phone {
+    font-size: 0.9rem;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.btn-extend {
+    background-color: rgba(155, 135, 245, 0.1);
+    color: var(--primary);
+    flex: 1;
+}
+
+.btn-extend:hover {
+    background-color: rgba(155, 135, 245, 0.2);
+}
+
+.btn-delete {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: var(--error);
+    flex: 1;
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 77, 77, 0.2);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: var(--bg-card);
+    border-radius: 8px;
+    color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+.settings-group {
+    margin-bottom: 2rem;
+}
+
+.settings-group h3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Notification Panel */
+.notification-panel {
+    position: absolute;
+    top: 80px;
+    right: 30px;
+    width: 320px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: all 0.3s;
+    transform-origin: top right;
+}
+
+.notification-panel.hidden {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.notification-header button {
+    background: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.notification-content {
+    font-size: 0.9rem;
+}
+
+/* Patient Dashboard */
+.patient-dashboard {
+    max-width: 700px;
+}
+
+.appointments-list {
+    margin-top: 2rem;
+}
+
+.patient-appointment-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.appointment-date {
+    background: rgba(155, 135, 245, 0.1);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    align-self: flex-start;
+}
+
+.appointment-details {
+    flex: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .role-selection {
+        flex-direction: column;
+    }
+    
+    .features {
+        flex-direction: column;
+    }
+    
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .sidebar-header, .sidebar-footer {
+        width: 100%;
+    }
+    
+    .sidebar nav {
+        order: 3;
+        width: 100%;
+    }
+    
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .sidebar li {
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+    
+    .appointments-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(155, 135, 245, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #7e69ab 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #a794f6 0%, #8975b2 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 135, 245, 0.4);
+}
+
+.form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Alert Styles */
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background-color: rgba(255, 77, 77, 0.15);
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    color: var(--error);
+}

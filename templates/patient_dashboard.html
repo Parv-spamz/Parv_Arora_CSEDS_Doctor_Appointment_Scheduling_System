@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card patient-dashboard">
+            <div class="back-link">
+                <a href="{{ url_for('patient_check') }}">←  Back</a>
+            </div>
+            
+            <h1>Your Appointments</h1>
+            <p class="subtitle">Phone: {{ phone_number }}</p>
+            
+            <div class="appointments-list">
+                {% if appointments|length > 0 %}
+                    {% for appointment in appointments %}
+                        <div class="patient-appointment-card">
+                            <div class="appointment-date">
+                                {{ appointment.start_time|datetime('%B %d, %Y') }}
+                            </div>
+                            <div class="appointment-time">
+                                {{ appointment.start_time|datetime('%I:%M %p') }}
+                            </div>
+                            <div class="appointment-details">
+                                <h3>{{ appointment.procedure_name }}</h3>
+                                <p>Expected duration: {{ appointment.base_duration + appointment.additional_time }} minutes</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <p>You have no upcoming appointments</p>
+                        <small>When you schedule an appointment, it will appear here</small>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

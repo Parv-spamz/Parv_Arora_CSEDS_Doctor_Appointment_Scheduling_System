@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <div class="landing-header">
+                <h1>Doctor Appointment System</h1>
+                <div class="subtitle">Intelligent scheduling for healthcare professionals</div>
+            </div>
+            
+            <div class="role-selection">
+                <div class="role-card doctor" onclick="window.location.href='{{ url_for('doctor_login') }}'">
+                    <div class="icon">👩‍⚕️</div>
+                    <h2>I am a Doctor</h2>
+                    <p>Manage appointments, view schedules, and adjust timing</p>
+                </div>
+                
+                <div class="role-card patient" onclick="window.location.href='{{ url_for('patient_check') }}'">
+                    <div class="icon">🧑</div>
+                    <h2>I am a Patient</h2>
+                    <p>Check appointment status and receive updates</p>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <div class="feature-text">
+                        <h3>AI-Powered Scheduling</h3>
+                        <p>Automatically adjusts appointment times</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">
+                        <h3>SMS Notifications</h3>
+                        <p>Real-time updates for any schedule changes</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-text">
+                        <h3>Customizable Settings</h3>
+                        <p>Flexible break times and procedure durations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Check | Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <div class="back-link">
+                <a href="{{ url_for('landing') }}">←  Back</a>
+            </div>
+            
+            <h1>Check Your Appointments</h1>
+            <p class="subtitle">Enter your phone number to view your appointments</p>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST" action="{{ url_for('patient_dashboard') }}">
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" 
+                           placeholder="Enter your 10-digit phone number" 
+                           pattern="[0-9]{10}" 
+                           title="Please enter a valid 10-digit phone number" 
+                           required>
+                    <small>Please enter a 10-digit phone number (numbers only)</small>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Check Appointments</button>
+            </form>
+            
+            <div class="form-footer">
+                <p>Don't have an appointment yet? <a href="{{ url_for('landing') }}">Return to home</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

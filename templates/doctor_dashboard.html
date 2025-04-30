@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard | Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Doctor Panel</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#appointments">Today's Appointments</a></li>
+                    <li><a href="#add-appointment">Add Appointment</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('landing') }}">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <header class="dashboard-header">
+                <h1>Welcome to Doctor Dashboard</h1>
+                <div class="date-display">{{ now().strftime('%B %d, %Y') }}</div>
+            </header>
+            
+            <section id="appointments" class="section">
+                <div class="section-header">
+                    <h2>Today's Appointments</h2>
+                    <div class="notification-count" id="notification-badge">0</div>
+                </div>
+                
+                <div class="appointments-container">
+                    {% if appointments|length > 0 %}
+                        {% for appointment in appointments %}
+                            <div class="appointment-card" data-id="{{ appointment.id }}">
+                                <div class="appointment-time">
+                                    {{ appointment.start_time|datetime('%I:%M %p') }}
+                                </div>
+                                <div class="appointment-info">
+                                    <h3>{{ appointment.patient_name }}</h3>
+                                    <p>{{ appointment.procedure_name }} ({{ appointment.base_duration + appointment.additional_time }} min)</p>
+                                    <p class="phone">{{ appointment.phone_number }}</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-extend" onclick="extendAppointment({{ appointment.id }})">+ 5 min</button>
+                                    <button class="btn-delete" onclick="deleteAppointment({{ appointment.id }})">Cancel</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state">
+                            <p>No appointments scheduled for today</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+            
+            <section id="add-appointment" class="section">
+                <div class="section-header">
+                    <h2>Add New Appointment</h2>
+                </div>
+                
+                <div class="glass-card">
+                    <form id="appointment-form">
+                        <div class="form-group">
+                            <label for="patient-name">Patient Name</label>
+                            <input type="text" id="patient-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input type="tel" id="phone-number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="procedure">Procedure</label>
+                            <select id="procedure" required>
+                                <option value="">-- Select Procedure --</option>
+                                {% for procedure in procedures %}
+                                    <option value="{{ procedure.id }}" data-duration="{{ procedure.duration }}">
+                                        {{ procedure.name }} ({{ procedure.duration }} min)
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-date">Date</label>
+                            <input type="date" id="appointment-date" min="{{ now().strftime('%Y-%m-%d') }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-time">Time</label>
+                            <input type="time" id="appointment-time" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+                    </form>
+                </div>
+            </section>
+            
+            <section id="settings" class="section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                </div>
+                
+                <div class="glass-card">
+                    <div class="settings-group">
+                        <h3>Break Time Settings</h3>
+                        
+                        <div class="form-group">
+                            <label for="break-toggle">Enable breaks between appointments</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="break-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="break-duration">Break Duration</label>
+                            <select id="break-duration">
+                                <option value="5">5 minutes</option>
+                                <option value="10">10 minutes</option>
+                                <option value="15">15 minutes</option>
+                            </select>
+                        </div>
+                        
+                        <button id="save-settings" class="btn btn-primary">Save Settings</button>
+                    </div>
+                </div>
+            </section>
+            
+            <div id="notification-panel" class="notification-panel hidden">
+                <div class="notification-header">
+                    <h3>Notifications</h3>
+                    <button id="close-notifications">×</button>
+                </div>
+                <div id="notification-list" class="notification-list"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+</body>
+</html>
