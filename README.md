@@ -9,6 +9,9 @@ A lightweight, elegant appointment scheduling system for healthcare professional
 - ** Yogya - 2401420001
 - **Ashwini - 2401420060
 
+# project video-
+- https://github.com/Parv-spamz/Parv_Arora_CSEDS_Doctor_Appointment_Scheduling_System/blob/main/MP2sem%20(1).mp4
+
 #project description-
 - **Dark, Elegant Interface**: Modern UI with a sleek dark theme and glass morphism design
 - **Role-Based Access**: Separate interfaces for doctors and patients
